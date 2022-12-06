@@ -22,17 +22,17 @@ class TicTacToeViewController: UIViewController {
     
     var board: [UIButton] = []
     
-    let a1 = Buttons(color: .systemPink)
-    let a2 = Buttons(color: .systemPink)
-    let a3 = Buttons(color: .systemPink)
-
-    let b1 = Buttons(color: .systemPink)
-    let b2 = Buttons(color: .systemPink)
-    let b3 = Buttons(color: .systemPink)
-
-    let c1 = Buttons(color: .systemPink)
-    let c2 = Buttons(color: .systemPink)
-    let c3 = Buttons(color: .systemPink)
+    let a1 = Buttons(color: .systemPink, title: "")
+    let a2 = Buttons(color: .systemPink, title: "")
+    let a3 = Buttons(color: .systemPink, title: "")
+    
+    let b1 = Buttons(color: .systemPink, title: "")
+    let b2 = Buttons(color: .systemPink, title: "")
+    let b3 = Buttons(color: .systemPink, title: "")
+   
+    let c1 = Buttons(color: .systemPink, title: "")
+    let c2 = Buttons(color: .systemPink, title: "")
+    let c3 = Buttons(color: .systemPink, title: "")
 
     
     override func viewDidLoad() {
@@ -40,7 +40,6 @@ class TicTacToeViewController: UIViewController {
         view.backgroundColor = .systemBackground
         configureUI()
         initBoard()
-        
     }
     
     func initBoard() {
@@ -60,9 +59,72 @@ class TicTacToeViewController: UIViewController {
     @objc func addToBoard(_ sender: UIButton) {
        addBoard(sender)
         
+        if checkForWin(symbol: xmark) {
+            resultAlert(title: "X wins")
+        }
+        
+        if checkForWin(symbol: circle) {
+            resultAlert(title: "O wins")
+        }
+        
         if (isBoardFull()) {
             resultAlert(title: "Draw")
         }
+    }
+    
+    func addBoard(_ sender: UIButton) {
+        if (sender.title(for: .normal) == "") {
+            if (currentTurn == Turn.O) {
+                sender.setTitle(circle, for: .normal)
+                currentTurn = Turn.X
+            } else if (currentTurn == Turn.X) {
+                sender.setTitle(xmark, for: .normal)
+                currentTurn = Turn.O
+            }
+        }
+    }
+    
+    func checkForWin(symbol: String) -> Bool {
+        //horizontal
+        if matchButtonAndSymbol(button: a1, symbol: symbol) && matchButtonAndSymbol(button: a2, symbol: symbol) && matchButtonAndSymbol(button: a3, symbol: symbol) {
+            return true
+        }
+        
+        if matchButtonAndSymbol(button: b1, symbol: symbol) && matchButtonAndSymbol(button: b2, symbol: symbol) && matchButtonAndSymbol(button: b3, symbol: symbol) {
+            return true
+        }
+        
+        if matchButtonAndSymbol(button: c1, symbol: symbol) && matchButtonAndSymbol(button: c2, symbol: symbol) && matchButtonAndSymbol(button: c3, symbol: symbol) {
+            return true
+        }
+        
+        //vertical
+        if matchButtonAndSymbol(button: a1, symbol: symbol) && matchButtonAndSymbol(button: b1, symbol: symbol) && matchButtonAndSymbol(button: c1, symbol: symbol) {
+            return true
+        }
+        
+        if matchButtonAndSymbol(button: a2, symbol: symbol) && matchButtonAndSymbol(button: b2, symbol: symbol) && matchButtonAndSymbol(button: c2, symbol: symbol) {
+            return true
+        }
+        
+        if matchButtonAndSymbol(button: a3, symbol: symbol) && matchButtonAndSymbol(button: b3, symbol: symbol) && matchButtonAndSymbol(button: c3, symbol: symbol) {
+            return true
+        }
+        
+        //diagonal
+        if matchButtonAndSymbol(button: a1, symbol: symbol) && matchButtonAndSymbol(button: b2, symbol: symbol) && matchButtonAndSymbol(button: c3, symbol: symbol) {
+            return true
+        }
+        
+        if matchButtonAndSymbol(button: a3, symbol: symbol) && matchButtonAndSymbol(button: b2, symbol: symbol) && matchButtonAndSymbol(button: c1, symbol: symbol) {
+            return true
+        }
+        
+        return false
+    }
+    
+    func matchButtonAndSymbol(button: UIButton, symbol: String) -> Bool {
+        return button.title(for: .normal) == symbol
     }
     
     func resultAlert(title: String) {
@@ -88,17 +150,7 @@ class TicTacToeViewController: UIViewController {
         return true
     }
     
-    func addBoard(_ sender: UIButton) {
-        if (sender.title(for: .normal) == "") {
-            if (currentTurn == Turn.O) {
-                sender.setTitle(circle, for: .normal)
-                currentTurn = Turn.X
-            } else if (currentTurn == Turn.X) {
-                sender.setTitle(xmark, for: .normal)
-                currentTurn = Turn.O
-            }
-        }
-    }
+
 
 
     func configureUI() {
