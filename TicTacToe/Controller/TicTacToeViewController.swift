@@ -20,37 +20,86 @@ class TicTacToeViewController: UIViewController {
     var xmark = "X"
     var circle = "O"
     
-    let a1 = Buttons(color: .systemPink, title: "")
-    let a2 = Buttons(color: .systemPink, title: "")
-    let a3 = Buttons(color: .systemPink, title: "")
+    var board: [UIButton] = []
+    
+    let a1 = Buttons(color: .systemPink)
+    let a2 = Buttons(color: .systemPink)
+    let a3 = Buttons(color: .systemPink)
 
-    let b1 = Buttons(color: .systemPink, title: "")
-    let b2 = Buttons(color: .systemPink, title: "")
-    let b3 = Buttons(color: .systemPink, title: "")
+    let b1 = Buttons(color: .systemPink)
+    let b2 = Buttons(color: .systemPink)
+    let b3 = Buttons(color: .systemPink)
 
-    let c1 = Buttons(color: .systemPink, title: "")
-    let c2 = Buttons(color: .systemPink, title: "")
-    let c3 = Buttons(color: .systemPink, title: "")
+    let c1 = Buttons(color: .systemPink)
+    let c2 = Buttons(color: .systemPink)
+    let c3 = Buttons(color: .systemPink)
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureUI()
+        initBoard()
         
     }
     
-    @objc func addToBoard(_ sender: UIButton?) {
-        if (sender?.title(for: .normal) == nil) {
+    func initBoard() {
+        board.append(a1)
+        board.append(a2)
+        board.append(a3)
+        
+        board.append(b1)
+        board.append(b2)
+        board.append(b3)
+        
+        board.append(c1)
+        board.append(c2)
+        board.append(c3)
+    }
+    
+    @objc func addToBoard(_ sender: UIButton) {
+       addBoard(sender)
+        
+        if (isBoardFull()) {
+            resultAlert(title: "Draw")
+        }
+    }
+    
+    func resultAlert(title: String) {
+        let ac = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
+            self.resetBoard()
+        }))
+        self.present(ac, animated: true)
+    }
+    
+    func resetBoard() {
+        for button in board {
+            button.setTitle("", for: .normal)
+        }
+    }
+    
+    func isBoardFull() -> Bool {
+        for button in board {
+            if (button.title(for: .normal) == "") {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func addBoard(_ sender: UIButton) {
+        if (sender.title(for: .normal) == "") {
             if (currentTurn == Turn.O) {
-                sender?.setTitle(circle, for: .normal)
+                sender.setTitle(circle, for: .normal)
                 currentTurn = Turn.X
             } else if (currentTurn == Turn.X) {
-                sender?.setTitle(xmark, for: .normal)
+                sender.setTitle(xmark, for: .normal)
                 currentTurn = Turn.O
             }
         }
     }
+
 
     func configureUI() {
         view.addSubviews(a1, a2, a3, b1, b2, b3, c1, c2, c3)

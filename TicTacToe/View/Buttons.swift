@@ -18,9 +18,9 @@ class Buttons: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(color: UIColor, title: String) {
+    convenience init(color: UIColor) {
         self.init(frame: .zero)
-        set(color: color, title: title)
+        set(color: color)
     }
 
     private func configure() {
@@ -30,10 +30,11 @@ class Buttons: UIButton {
 
     }
 
-    func set(color: UIColor, title: String) {
+    func set(color: UIColor) {
         configuration?.baseBackgroundColor = color
-        configuration?.baseForegroundColor = .white
-        configuration?.title = title
+//        configuration?.baseForegroundColor = .white
+//        configuration?.title = title
+    
     }
 }
 
