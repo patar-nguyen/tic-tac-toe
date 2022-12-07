@@ -7,12 +7,12 @@ The classic tic tac toe game built in Swift. The game user interface is built pr
 - Xcode
 
 ## Screenshots
-<img src="https://github.com/patar-nguyen/github_followers/blob/master/GitHubFollowers/Screenshots/Search.png?raw=true" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="500" />
+<img src="https://github.com/patar-nguyen/tic-tac-toe/blob/main/TicTacToe/Support/Assets.xcassets/Main.imageset/Main.png?raw=true" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="500" />
 
-<img src="https://github.com/patar-nguyen/github_followers/blob/master/GitHubFollowers/Screenshots/Followers.png?raw=true" width="300" height="500" />
+<img src="https://github.com/patar-nguyen/tic-tac-toe/blob/main/TicTacToe/Support/Assets.xcassets/Draw.imageset/Draw.png?raw=true" width="300" height="500" />
 
-<img src="https://github.com/patar-nguyen/github_followers/blob/master/GitHubFollowers/Screenshots/Profile.png?raw=true" width="300" height="500" />
+<img src="https://github.com/patar-nguyen/tic-tac-toe/blob/main/TicTacToe/Support/Assets.xcassets/XWin.imageset/XWin.png?raw=true" width="300" height="500" />
 
-<img src="https://github.com/patar-nguyen/github_followers/blob/master/GitHubFollowers/Screenshots/Favorites.png?raw=true" width="300" height="500" />
+<img src="https://github.com/patar-nguyen/tic-tac-toe/blob/main/TicTacToe/Support/Assets.xcassets/OWin.imageset/OWin.png?raw=true" width="300" height="500" />
 
 
