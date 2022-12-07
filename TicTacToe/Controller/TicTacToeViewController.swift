@@ -19,7 +19,6 @@ class TicTacToeViewController: UIViewController {
     
     var turnLabel = Labels(textAlignment: .center, fontSize: 50)
     var turnLabelChange = Labels(textAlignment: .center, fontSize: 50)
-    var lbel = UILabel()
     
     var xmark = "X"
     var circle = "O"
