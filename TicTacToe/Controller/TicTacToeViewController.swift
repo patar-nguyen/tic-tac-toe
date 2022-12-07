@@ -17,6 +17,10 @@ class TicTacToeViewController: UIViewController {
     var firstTurn = Turn.X
     var currentTurn = Turn.X
     
+    var turnLabel = Labels(textAlignment: .center, fontSize: 50)
+    var turnLabelChange = Labels(textAlignment: .center, fontSize: 50)
+    var lbel = UILabel()
+    
     var xmark = "X"
     var circle = "O"
     
@@ -25,17 +29,17 @@ class TicTacToeViewController: UIViewController {
     
     var board: [UIButton] = []
     
-    let a1 = Buttons(color: .systemPink, title: "")
-    let a2 = Buttons(color: .systemPink, title: "")
-    let a3 = Buttons(color: .systemPink, title: "")
+    let a1 = Buttons(color: .systemPink)
+    let a2 = Buttons(color: .systemPink)
+    let a3 = Buttons(color: .systemPink)
     
-    let b1 = Buttons(color: .systemPink, title: "")
-    let b2 = Buttons(color: .systemPink, title: "")
-    let b3 = Buttons(color: .systemPink, title: "")
+    let b1 = Buttons(color: .systemPink)
+    let b2 = Buttons(color: .systemPink)
+    let b3 = Buttons(color: .systemPink)
    
-    let c1 = Buttons(color: .systemPink, title: "")
-    let c2 = Buttons(color: .systemPink, title: "")
-    let c3 = Buttons(color: .systemPink, title: "")
+    let c1 = Buttons(color: .systemPink)
+    let c2 = Buttons(color: .systemPink)
+    let c3 = Buttons(color: .systemPink)
 
     
     override func viewDidLoad() {
@@ -68,9 +72,11 @@ class TicTacToeViewController: UIViewController {
             if (currentTurn == Turn.O) {
                 sender.setTitle(circle, for: .normal)
                 currentTurn = Turn.X
+                turnLabelChange.text = xmark
             } else if (currentTurn == Turn.X) {
                 sender.setTitle(xmark, for: .normal)
                 currentTurn = Turn.O
+                turnLabelChange.text = circle
             }
         }
     }
@@ -120,7 +126,7 @@ class TicTacToeViewController: UIViewController {
     
     func resultAlert(title: String) {
         let message = "\nX Score: \(xScore) \n\nO Score: \(oScore)"
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
             self.resetBoard()
         }))
@@ -157,7 +163,10 @@ class TicTacToeViewController: UIViewController {
     }
 
     func configureUI() {
-        view.addSubviews(a1, a2, a3, b1, b2, b3, c1, c2, c3)
+        view.addSubviews(turnLabel, turnLabelChange, a1, a2, a3, b1, b2, b3, c1, c2, c3)
+        
+        turnLabel.text = "Turn"
+        turnLabelChange.text = xmark
         
         a1.addTarget(self, action: #selector(addToBoard), for: .touchUpInside)
         a2.addTarget(self, action: #selector(addToBoard), for: .touchUpInside)
@@ -172,6 +181,16 @@ class TicTacToeViewController: UIViewController {
         c3.addTarget(self, action: #selector(addToBoard), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
+            turnLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            turnLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            turnLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            turnLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            turnLabelChange.topAnchor.constraint(equalTo: turnLabel.bottomAnchor, constant: 15),
+            turnLabelChange.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            turnLabelChange.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            turnLabelChange.heightAnchor.constraint(equalToConstant: 50),
+            
             a1.topAnchor.constraint(equalTo: a2.topAnchor),
             a1.trailingAnchor.constraint(equalTo: a2.leadingAnchor, constant: -10),
             a1.heightAnchor.constraint(equalToConstant: 75),

@@ -17,6 +17,7 @@
 		93C3261E293BD01400686E27 /* TicTacToeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C3261D293BD01400686E27 /* TicTacToeUITestsLaunchTests.swift */; };
 		93C3262E293BD1B500686E27 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C3262D293BD1B500686E27 /* Buttons.swift */; };
 		93C32631293EC74D00686E27 /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C32630293EC74D00686E27 /* UIView + Ext.swift */; };
+		93C326342940191D00686E27 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C326332940191D00686E27 /* Labels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		93C3262D293BD1B500686E27 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		93C32630293EC74D00686E27 /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		93C326322940106700686E27 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		93C326332940191D00686E27 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				93C3262D293BD1B500686E27 /* Buttons.swift */,
+				93C326332940191D00686E27 /* Labels.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			files = (
 				93C325FF293BD01200686E27 /* TicTacToeViewController.swift in Sources */,
 				93C325FB293BD01200686E27 /* AppDelegate.swift in Sources */,
+				93C326342940191D00686E27 /* Labels.swift in Sources */,
 				93C325FD293BD01200686E27 /* SceneDelegate.swift in Sources */,
 				93C3262E293BD1B500686E27 /* Buttons.swift in Sources */,
 				93C32631293EC74D00686E27 /* UIView + Ext.swift in Sources */,
