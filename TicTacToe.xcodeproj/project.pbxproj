@@ -51,6 +51,7 @@
 		93C3261D293BD01400686E27 /* TicTacToeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		93C3262D293BD1B500686E27 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		93C32630293EC74D00686E27 /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
+		93C326322940106700686E27 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +82,7 @@
 		93C325EE293BD01200686E27 = {
 			isa = PBXGroup;
 			children = (
+				93C326322940106700686E27 /* README.md */,
 				93C325F9293BD01200686E27 /* TicTacToe */,
 				93C32610293BD01400686E27 /* TicTacToeTests */,
 				93C3261A293BD01400686E27 /* TicTacToeUITests */,

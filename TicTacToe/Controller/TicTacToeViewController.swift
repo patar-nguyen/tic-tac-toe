@@ -20,6 +20,9 @@ class TicTacToeViewController: UIViewController {
     var xmark = "X"
     var circle = "O"
     
+    var xScore = 0
+    var oScore = 0
+    
     var board: [UIButton] = []
     
     let a1 = Buttons(color: .systemPink, title: "")
@@ -39,36 +42,24 @@ class TicTacToeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureUI()
-        initBoard()
-    }
-    
-    func initBoard() {
-        board.append(a1)
-        board.append(a2)
-        board.append(a3)
-        
-        board.append(b1)
-        board.append(b2)
-        board.append(b3)
-        
-        board.append(c1)
-        board.append(c2)
-        board.append(c3)
+        setupBoard()
     }
     
     @objc func addToBoard(_ sender: UIButton) {
        addBoard(sender)
         
         if checkForWin(symbol: xmark) {
-            resultAlert(title: "X wins")
+            xScore += 1
+            resultAlert(title: "X wins!")
         }
         
         if checkForWin(symbol: circle) {
-            resultAlert(title: "O wins")
+            oScore += 1
+            resultAlert(title: "O wins!")
         }
         
         if (isBoardFull()) {
-            resultAlert(title: "Draw")
+            resultAlert(title: "Draw!")
         }
     }
     
@@ -85,7 +76,7 @@ class TicTacToeViewController: UIViewController {
     }
     
     func checkForWin(symbol: String) -> Bool {
-        //horizontal
+        //horizontal win conditions
         if matchButtonAndSymbol(button: a1, symbol: symbol) && matchButtonAndSymbol(button: a2, symbol: symbol) && matchButtonAndSymbol(button: a3, symbol: symbol) {
             return true
         }
@@ -98,7 +89,7 @@ class TicTacToeViewController: UIViewController {
             return true
         }
         
-        //vertical
+        //vertical win conditions
         if matchButtonAndSymbol(button: a1, symbol: symbol) && matchButtonAndSymbol(button: b1, symbol: symbol) && matchButtonAndSymbol(button: c1, symbol: symbol) {
             return true
         }
@@ -111,7 +102,7 @@ class TicTacToeViewController: UIViewController {
             return true
         }
         
-        //diagonal
+        //diagonal win conditions
         if matchButtonAndSymbol(button: a1, symbol: symbol) && matchButtonAndSymbol(button: b2, symbol: symbol) && matchButtonAndSymbol(button: c3, symbol: symbol) {
             return true
         }
@@ -128,7 +119,8 @@ class TicTacToeViewController: UIViewController {
     }
     
     func resultAlert(title: String) {
-        let ac = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let message = "\nX Score: \(xScore) \n\nO Score: \(oScore)"
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
             self.resetBoard()
         }))
@@ -150,8 +142,19 @@ class TicTacToeViewController: UIViewController {
         return true
     }
     
-
-
+    func setupBoard() {
+        board.append(a1)
+        board.append(a2)
+        board.append(a3)
+        
+        board.append(b1)
+        board.append(b2)
+        board.append(b3)
+        
+        board.append(c1)
+        board.append(c2)
+        board.append(c3)
+    }
 
     func configureUI() {
         view.addSubviews(a1, a2, a3, b1, b2, b3, c1, c2, c3)
@@ -169,33 +172,33 @@ class TicTacToeViewController: UIViewController {
         c3.addTarget(self, action: #selector(addToBoard), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            a1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
+            a1.topAnchor.constraint(equalTo: a2.topAnchor),
             a1.trailingAnchor.constraint(equalTo: a2.leadingAnchor, constant: -10),
             a1.heightAnchor.constraint(equalToConstant: 75),
             a1.widthAnchor.constraint(equalToConstant: 75),
-            
-            a2.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
+
+            a2.bottomAnchor.constraint(equalTo: b2.topAnchor, constant: -10),
             a2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             a2.heightAnchor.constraint(equalToConstant: 75),
             a2.widthAnchor.constraint(equalToConstant: 75),
-            
-            a3.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
+
+            a3.topAnchor.constraint(equalTo: a2.topAnchor),
             a3.leadingAnchor.constraint(equalTo: a2.trailingAnchor, constant: 10),
             a3.heightAnchor.constraint(equalToConstant: 75),
             a3.widthAnchor.constraint(equalToConstant: 75),
             
-            b1.topAnchor.constraint(equalTo: a1.bottomAnchor, constant: 10),
-            b1.trailingAnchor.constraint(equalTo: a2.leadingAnchor, constant: -10),
+            b1.topAnchor.constraint(equalTo: b2.topAnchor),
+            b1.trailingAnchor.constraint(equalTo: b2.leadingAnchor, constant: -10),
             b1.heightAnchor.constraint(equalToConstant: 75),
             b1.widthAnchor.constraint(equalToConstant: 75),
             
-            b2.topAnchor.constraint(equalTo: a2.bottomAnchor, constant: 10),
+            b2.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             b2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             b2.heightAnchor.constraint(equalToConstant: 75),
             b2.widthAnchor.constraint(equalToConstant: 75),
             
-            b3.topAnchor.constraint(equalTo: a3.bottomAnchor, constant: 10),
-            b3.leadingAnchor.constraint(equalTo: a2.trailingAnchor, constant: 10),
+            b3.topAnchor.constraint(equalTo: b2.topAnchor),
+            b3.leadingAnchor.constraint(equalTo: b2.trailingAnchor, constant: 10),
             b3.heightAnchor.constraint(equalToConstant: 75),
             b3.widthAnchor.constraint(equalToConstant: 75),
             
@@ -203,12 +206,12 @@ class TicTacToeViewController: UIViewController {
             c1.trailingAnchor.constraint(equalTo: a2.leadingAnchor, constant: -10),
             c1.heightAnchor.constraint(equalToConstant: 75),
             c1.widthAnchor.constraint(equalToConstant: 75),
-            
+
             c2.topAnchor.constraint(equalTo: b2.bottomAnchor, constant: 10),
             c2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             c2.heightAnchor.constraint(equalToConstant: 75),
             c2.widthAnchor.constraint(equalToConstant: 75),
-            
+
             c3.topAnchor.constraint(equalTo: b3.bottomAnchor, constant: 10),
             c3.leadingAnchor.constraint(equalTo: a2.trailingAnchor, constant: 10),
             c3.heightAnchor.constraint(equalToConstant: 75),
