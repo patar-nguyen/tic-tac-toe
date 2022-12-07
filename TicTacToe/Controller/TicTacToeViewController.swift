@@ -55,12 +55,12 @@ class TicTacToeViewController: UIViewController {
             xScore += 1
             resultAlert(title: "X wins!")
         }
-        
+
         if checkForWin(symbol: circle) {
             oScore += 1
             resultAlert(title: "O wins!")
         }
-        
+
         if (isBoardFull()) {
             resultAlert(title: "Draw!")
         }
@@ -125,11 +125,11 @@ class TicTacToeViewController: UIViewController {
     
     func resultAlert(title: String) {
         let message = "\nX Score: \(xScore) \n\nO Score: \(oScore)"
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Reset", style: .default, handler: { action in
             self.resetBoard()
         }))
-        self.present(ac, animated: true)
+        self.present(alertController, animated: true)
     }
     
     func resetBoard() {
